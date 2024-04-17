@@ -8,18 +8,30 @@
     <fragment
         android:id="@+id/navigation_air_tickets"
         android:name="com.example.findyourticket.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Air tickets"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_hotels"
         android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
-        android:label="@string/title_dashboard"
+        android:label="Hotels"
         tools:layout="@layout/fragment_not_implemented" />
 
     <fragment
         android:id="@+id/navigation_shorter"
-        android:name="com.example.findyourticket.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
+        android:label="Shorter"
+        tools:layout="@layout/fragment_not_implemented" />
+
+    <fragment
+        android:id="@+id/navigation_following"
+        android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_not_implemented" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_not_implemented" />
 </navigation>
