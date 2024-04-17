@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.feature_air_ticket_presentation"
+    namespace = "com.example.base"
     compileSdk = 34
 
     defaultConfig {
@@ -33,8 +33,6 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core:base"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
