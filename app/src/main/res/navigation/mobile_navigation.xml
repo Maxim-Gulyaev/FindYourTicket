@@ -9,7 +9,7 @@
         android:id="@+id/navigation_air_tickets"
         android:name="com.example.feature_air_ticket_presentation.fragment.ui.AirTicketsMainFragment"
         android:label="Air tickets"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_air_ticket_main" />
 
     <fragment
         android:id="@+id/navigation_not_implemented"
