@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#0C0C0C</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey_1" tools:ignore="MissingDefaultResource">#1D1E20</color>
+    <color name="grey_2" tools:ignore="MissingDefaultResource">#242529</color>
+    <color name="grey_3" tools:ignore="MissingDefaultResource">#2F3035</color>
+    <color name="grey_4" tools:ignore="MissingDefaultResource">#3E3F43</color>
+    <color name="grey_5" tools:ignore="MissingDefaultResource">#5E5F61</color>
+    <color name="grey_6" tools:ignore="MissingDefaultResource">#9F9F9F</color>
+    <color name="grey_7" tools:ignore="MissingDefaultResource">#DBDBDB</color>
+    <color name="blue" tools:ignore="MissingDefaultResource">#4C95FE</color>
+    <color name="dark_blue" tools:ignore="MissingDefaultResource">#00427D</color>
+    <color name="green" tools:ignore="MissingDefaultResource">#4CB24E</color>
+    <color name="dark_green" tools:ignore="MissingDefaultResource">#015905</color>
+    <color name="red" tools:ignore="MissingDefaultResource">#FF0000</color>
+    <color name="orange" tools:ignore="MissingDefaultResource">#F36E36</color>
 </resources>

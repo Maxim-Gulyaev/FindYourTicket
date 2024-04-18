@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="finding_cheap_flights">Поиск дешевых авиабилетов</string>
+    <string name="music_title">Музыкально отлететь</string>
+    <string name="from_hint">Откуда - Москва</string>
+    <string name="where_hint">Куда - Турция</string>
+</resources>
