@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+
+import com.example.findyourticket.R
 import com.example.findyourticket.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

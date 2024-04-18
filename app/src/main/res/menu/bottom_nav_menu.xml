@@ -7,7 +7,7 @@
         android:title="@string/air_tickets"/>
 
     <item
-        android:id="@+id/navigation_hotels"
+        android:id="@+id/navigation_not_implemented"
         android:icon="@drawable/ic_hotels_24"
         android:title="@string/hotels"/>
 

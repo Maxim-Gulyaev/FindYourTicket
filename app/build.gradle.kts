@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(":air_ticket:feature_air_ticket_presentation"))
+    implementation(project(":core:utils"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

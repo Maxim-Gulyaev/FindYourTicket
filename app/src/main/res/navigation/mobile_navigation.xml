@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_air_tickets"
-        android:name="com.example.findyourticket.ui.home.HomeFragment"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.AirTicketsMainFragment"
         android:label="Air tickets"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_hotels"
+        android:id="@+id/navigation_not_implemented"
         android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
         android:label="Hotels"
         tools:layout="@layout/fragment_not_implemented" />
@@ -34,4 +34,5 @@
         android:name="com.example.findyourticket.ui.not_implemented.NotImplementedFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_not_implemented" />
+
 </navigation>

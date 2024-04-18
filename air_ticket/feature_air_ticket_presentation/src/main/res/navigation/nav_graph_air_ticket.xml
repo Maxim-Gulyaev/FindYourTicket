@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_air_ticket"
+    app:startDestination="@id/air_tickets">
+
+    <fragment
+        android:id="@+id/air_tickets"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.AirTicketsMainFragment"
+        android:label="Air tickets" />
+
+</navigation>
