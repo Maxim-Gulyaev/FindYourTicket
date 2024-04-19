@@ -8,16 +8,6 @@ import com.google.gson.JsonObject
 class MainScreenDataSourceImpl(): MainScreenDataSource {
 
     override fun getMusicOfferList(): List<MusicOfferModel> {
-        /*val jsonData = MusicOfferJsonData.jsonObject
-        val gson = Gson()
-        val type = object : TypeToken<MusicOfferJsonData>() {}.type
-        val musicOfferJsonData = gson.fromJson<MusicOfferJsonData>(jsonData.toString(), type)
-        return musicOfferJsonData.*/
-
-        /*val jsonData = MusicOfferJsonData.mockJsonString
-        val musicOfferModel = Json.decodeFromString<MusicOfferModel>(jsonData)
-        return musicOfferModel*/
-
         val jsonData = MusicOfferJsonData.mockJsonString
         val gson = Gson()
         val jsonObject = gson.fromJson(jsonData, JsonObject::class.java)

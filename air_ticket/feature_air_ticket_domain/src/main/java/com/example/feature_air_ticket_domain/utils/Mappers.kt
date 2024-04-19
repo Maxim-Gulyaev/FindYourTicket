@@ -7,7 +7,7 @@ import com.example.feature_air_ticket_domain.model.PriceDomain
 
 fun List<MusicOfferModel>.toMusicOfferDomain(): List<MusicOfferDomain> = this.map {
     MusicOfferDomain(
-        musicOfferId = it.musicOfferId,
+        musicOfferId = it.id,
         title = it.title,
         town = it.town,
         price = (it.price.toPriceDomain()),
