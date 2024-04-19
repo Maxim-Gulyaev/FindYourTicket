@@ -1,4 +1,4 @@
-package com.example.feature_air_ticket_presentation.fragment.ui
+package com.example.feature_air_ticket_presentation.fragment.ui.main_screen
 
 import android.os.Bundle
 import android.text.Editable

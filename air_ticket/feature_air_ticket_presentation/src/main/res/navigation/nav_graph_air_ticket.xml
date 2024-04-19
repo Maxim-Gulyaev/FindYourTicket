@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/air_tickets"
-        android:name="com.example.feature_air_ticket_presentation.fragment.ui.AirTicketsMainFragment"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.main_screen.AirTicketsMainFragment"
         android:label="Air tickets" />
 
 </navigation>
