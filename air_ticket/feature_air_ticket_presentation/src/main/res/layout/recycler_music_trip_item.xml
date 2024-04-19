@@ -9,6 +9,7 @@
         android:id="@+id/cvMusicianPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
         app:cardCornerRadius="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -18,7 +19,8 @@
             android:id="@+id/ivMusicianPicture"
             android:layout_width="133dp"
             android:layout_height="133dp"
-            tools:src="@android:drawable/btn_minus" />
+            android:scaleType="centerCrop"
+            tools:src="@drawable/antwoord" />
 
     </androidx.cardview.widget.CardView>
 
@@ -26,6 +28,7 @@
         android:id="@+id/tvMusicianName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -38,6 +41,7 @@
         android:id="@+id/tvMusicianCity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -49,6 +53,7 @@
         android:id="@+id/ivPlane"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_plane_24"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,7 +63,7 @@
         android:id="@+id/tvPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginHorizontal="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toRightOf="@id/ivPlane"
         app:layout_constraintRight_toRightOf="parent"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -56,9 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:elevation="2dp"
-        android:maxLines="1"
-        android:inputType="text"
         android:hint="@string/from_hint"
+        android:inputType="text"
+        android:maxLines="1"
         app:layout_constraintLeft_toRightOf="@id/ivSearch"
         app:layout_constraintRight_toRightOf="@id/cvInner"
         app:layout_constraintTop_toTopOf="@id/cvInner" />
@@ -77,9 +76,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:maxLines="1"
-        android:inputType="text"
         android:hint="@string/where_hint"
+        android:inputType="text"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@id/cvInner"
         app:layout_constraintLeft_toLeftOf="@id/etFrom"
         app:layout_constraintRight_toRightOf="@id/etFrom" />
@@ -91,17 +90,18 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/music_title"
-        app:layout_constraintTop_toBottomOf="@id/cvOuter"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvOuter" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMusicTrip"
+        android:id="@+id/rvMusicOffer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvMusicTitle"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMusicTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
