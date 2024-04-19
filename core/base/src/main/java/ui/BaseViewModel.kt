@@ -1,4 +1,6 @@
 package ui
 
-open class BaseViewModel {
+import androidx.lifecycle.ViewModel
+
+open class BaseViewModel: ViewModel() {
 }
