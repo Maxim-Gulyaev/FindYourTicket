@@ -7,6 +7,26 @@
     <fragment
         android:id="@+id/air_tickets"
         android:name="com.example.feature_air_ticket_presentation.fragment.ui.main_screen.AirTicketsMainFragment"
-        android:label="Air tickets" />
+        android:label="Air tickets">
+        <action
+            android:id="@+id/action_airTicketsMainFragment_to_airTicketNotImplementedFragment"
+            app:destination="@id/not_implemented" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/bottom_sheet"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.main_screen.bottom_sheet.BottomSheetFragment"
+        android:label="Bottom sheet">
+        <action
+            android:id="@+id/action_bottomSheetFragment_to_airTicketNotImplementedFragment"
+            app:destination="@id/not_implemented" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/not_implemented"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.main_screen.stub.AirTickerNotImplementedFragment"
+        android:label="Not implemented" />
 
 </navigation>

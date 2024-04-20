@@ -11,4 +11,5 @@
     <string name="popular_direction">Популярное направление</string>
     <string name="sochi">Сочи</string>
     <string name="phuket">Пхукет</string>
+    <string name="not_implemented_yet">This feature is not implemented yet</string>
 </resources>
