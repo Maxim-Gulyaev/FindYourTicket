@@ -47,10 +47,10 @@
         android:src="@drawable/ic_search_24"
         app:layout_constraintBottom_toBottomOf="@id/etWhere"
         app:layout_constraintLeft_toLeftOf="@id/cvInner"
-        app:layout_constraintTop_toTopOf="@id/etFrom" />
+        app:layout_constraintTop_toTopOf="@id/tvDeparture" />
 
     <EditText
-        android:id="@+id/etFrom"
+        android:id="@+id/tvDeparture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
@@ -67,9 +67,9 @@
         android:layout_height="1dp"
         android:elevation="4dp"
         app:dividerColor="@android:color/white"
-        app:layout_constraintLeft_toLeftOf="@id/etFrom"
-        app:layout_constraintRight_toRightOf="@id/etFrom"
-        app:layout_constraintTop_toBottomOf="@id/etFrom" />
+        app:layout_constraintLeft_toLeftOf="@id/tvDeparture"
+        app:layout_constraintRight_toRightOf="@id/tvDeparture"
+        app:layout_constraintTop_toBottomOf="@id/tvDeparture" />
 
     <TextView
         android:id="@+id/etWhere"
@@ -78,8 +78,8 @@
         android:elevation="2dp"
         android:text="@string/where_hint"
         app:layout_constraintBottom_toBottomOf="@id/cvInner"
-        app:layout_constraintLeft_toLeftOf="@id/etFrom"
-        app:layout_constraintRight_toRightOf="@id/etFrom" />
+        app:layout_constraintLeft_toLeftOf="@id/tvDeparture"
+        app:layout_constraintRight_toRightOf="@id/tvDeparture" />
 
     <TextView
         android:id="@+id/tvMusicTitle"

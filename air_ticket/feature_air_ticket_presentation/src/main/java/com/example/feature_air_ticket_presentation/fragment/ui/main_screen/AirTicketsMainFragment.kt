@@ -3,10 +3,10 @@ package com.example.feature_air_ticket_presentation.fragment.ui.main_screen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
@@ -16,6 +16,10 @@ import com.example.feature_air_ticket_presentation.databinding.FragmentAirTicket
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.adapter.MusicOfferAdapter
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.bottom_sheet.BottomSheetFragment
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.model.MusicOffer
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.BOTTOM_SHEET
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_RESULT
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
 import com.example.feature_air_ticket_presentation.fragment.utils.MainFragmentViewModelFactory
 import com.example.feature_air_ticket_presentation.fragment.utils.SharedPreferences
 import ui.BaseFragment
@@ -27,7 +31,9 @@ class AirTicketsMainFragment : BaseFragment() {
         ViewModelProviders.of(
             this, MainFragmentViewModelFactory(
                 GetMusicOfferListUseCaseImpl(
-                    MainScreenRepositoryImpl(MainScreenDataSourceImpl())
+                    MainScreenRepositoryImpl(
+                        MainScreenDataSourceImpl()
+                    )
                 )
             )
         ).get(AirTicketsMainViewModel::class.java)
@@ -59,7 +65,7 @@ class AirTicketsMainFragment : BaseFragment() {
 
     private fun setInputListener() {
         binding?.apply {
-            etFrom.addTextChangedListener(object : TextWatcher {
+            tvDeparture.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -71,20 +77,21 @@ class AirTicketsMainFragment : BaseFragment() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    sharedPreferences?.saveInput(etFrom.text.toString())
+                    sharedPreferences?.saveInput(tvDeparture.text.toString())
                 }
 
             })
             etWhere.setOnClickListener {
+                setFragmentResult()
                 val bottomSheet = BottomSheetFragment()
-                bottomSheet.show(childFragmentManager, "")
+                bottomSheet.show(childFragmentManager, BOTTOM_SHEET)
             }
 
         }
     }
 
     private fun setPersistedInput() {
-        binding?.etFrom?.setText(sharedPreferences?.getInput() ?: "")
+        binding?.tvDeparture?.setText(sharedPreferences?.getInput() ?: EMPTY_STRING)
     }
 
     private fun getMusicOfferList() {
@@ -103,5 +110,13 @@ class AirTicketsMainFragment : BaseFragment() {
             )
             adapter = MusicOfferAdapter(offerList)
         }
+    }
+
+    private fun setFragmentResult() {
+        val departureText = binding?.tvDeparture?.text
+        requireActivity().supportFragmentManager.setFragmentResult(
+            DEPARTURE_TEXT_RESULT,
+            bundleOf(Pair(DEPARTURE_TEXT_KEY, departureText))
+        )
     }
 }

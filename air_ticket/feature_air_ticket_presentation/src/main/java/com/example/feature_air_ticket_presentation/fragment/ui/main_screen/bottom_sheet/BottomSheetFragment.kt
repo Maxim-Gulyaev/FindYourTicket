@@ -8,7 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentBottomSheetBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_RESULT
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetFragment: BottomSheetDialogFragment() {
@@ -24,6 +25,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         _binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
 
         setClickListeners()
+        setDepartureText()
 
         return binding?.root
     }
@@ -35,20 +37,32 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding?.apply {
+            etWhere.setOnEditorActionListener { v, actionId, event ->
+                navigateToFragment(
+                    R.id.action_airTicketsMainFragment_to_showFlightsFragment
+                )
+                true
+            }
             ivClear.setOnClickListener {
                 etWhere.text.clear()
             }
             vRouteListener.setOnClickListener {
-                navigateToStub()
+                navigateToFragment(
+                    R.id.action_airTicketsMainFragment_to_airTicketNotImplementedFragment
+                )
             }
             vSomewhereListener.setOnClickListener {
                 etWhere.setText(R.string.somewhere)
             }
             vWeekendListener.setOnClickListener {
-                navigateToStub()
+                navigateToFragment(
+                    R.id.action_airTicketsMainFragment_to_airTicketNotImplementedFragment
+                )
             }
             vHotListener.setOnClickListener {
-                navigateToStub()
+                navigateToFragment(
+                    R.id.action_airTicketsMainFragment_to_airTicketNotImplementedFragment
+                )
             }
             vFirstTownListener.setOnClickListener {
                 setDestinationText(tvFirstTown.text)
@@ -62,16 +76,25 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         }
     }
 
-    private fun navigateToStub() {
+    private fun navigateToFragment(destination: Int) {
         findNavController().apply {
             setGraph(R.navigation.nav_graph_air_ticket)
-            navigate(R.id.action_airTicketsMainFragment_to_airTicketNotImplementedFragment)
+            navigate(destination)
         }
     }
 
     private fun setDestinationText(text: CharSequence) {
         val destinationText = Editable.Factory.getInstance().newEditable(text)
         binding?.etWhere?.text = destinationText
+    }
+
+    private fun setDepartureText() {
+        requireActivity().supportFragmentManager.setFragmentResultListener(
+            DEPARTURE_TEXT_RESULT,
+            viewLifecycleOwner
+        ) { _, bundle ->
+            binding?.tvFrom?.text = bundle.getCharSequence(DEPARTURE_TEXT_KEY)
+        }
     }
 
 }

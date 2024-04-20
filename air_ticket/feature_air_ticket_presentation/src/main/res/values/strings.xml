@@ -12,4 +12,8 @@
     <string name="sochi">Сочи</string>
     <string name="phuket">Пхукет</string>
     <string name="not_implemented_yet">This feature is not implemented yet</string>
+    <string name="back">обратно</string>
+    <string name="econom">1,эконом</string>
+    <string name="filter">фильтр</string>
+    <string name="direct_flights">Прямые рейсы</string>
 </resources>
