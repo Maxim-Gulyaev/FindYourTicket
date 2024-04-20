@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.asFlow
 class GetMusicOfferListUseCaseImpl(
     private val mainScreenRepositoryImpl: MainScreenRepositoryImpl
 ): GetMusicOfferListUseCase {
-    override fun execute(): Flow<MusicOfferDomain> {
-        return mainScreenRepositoryImpl.getMusicOfferList().toMusicOfferDomain().asFlow()
-    }
+
+    override fun execute(): Flow<MusicOfferDomain> =
+        mainScreenRepositoryImpl.getMusicOfferList().toMusicOfferDomain().asFlow()
+
 }

@@ -17,12 +17,12 @@ class AirTicketsMainViewModel(
     val musicOfferList: LiveData<List<MusicOffer>> = _musicOfferList
 
     fun getMusicOffersList() {
-        val musicOfferList = mutableListOf<MusicOffer>()
+        val offers = mutableListOf<MusicOffer>()
         viewModelScope.launch {
             getMusicOfferListUseCase.execute().collect() { value ->
-                musicOfferList.add(value.toMusicOffer())
+                offers.add(value.toMusicOffer())
             }
-            _musicOfferList.value = musicOfferList
+            _musicOfferList.value = offers
         }
     }
 
