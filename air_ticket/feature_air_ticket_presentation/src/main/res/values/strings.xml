@@ -4,4 +4,11 @@
     <string name="music_title">Музыкально отлететь</string>
     <string name="from_hint">Откуда - Москва</string>
     <string name="where_hint">Куда - Турция</string>
+    <string name="route">Сложный маршрут</string>
+    <string name="somewhere">Куда угодно</string>
+    <string name="hot_tickets">Горячие билеты</string>
+    <string name="stambul">Стамбул</string>
+    <string name="popular_direction">Популярное направление</string>
+    <string name="sochi">Сочи</string>
+    <string name="phuket">Пхукет</string>
 </resources>

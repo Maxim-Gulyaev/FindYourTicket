@@ -3,6 +3,7 @@ package com.example.feature_air_ticket_presentation.fragment.ui.main_screen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +14,7 @@ import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
 import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetMusicOfferListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentAirTicketMainBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.adapter.MusicOfferAdapter
+import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.bottom_sheet.BottomSheetFragment
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.model.MusicOffer
 import com.example.feature_air_ticket_presentation.fragment.utils.MainFragmentViewModelFactory
 import com.example.feature_air_ticket_presentation.fragment.utils.SharedPreferences
@@ -73,6 +75,11 @@ class AirTicketsMainFragment : BaseFragment() {
                 }
 
             })
+            etWhere.setOnClickListener {
+                val bottomSheet = BottomSheetFragment()
+                bottomSheet.show(childFragmentManager, "")
+            }
+
         }
     }
 

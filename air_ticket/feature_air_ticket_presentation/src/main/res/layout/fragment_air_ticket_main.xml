@@ -71,14 +71,12 @@
         app:layout_constraintRight_toRightOf="@id/etFrom"
         app:layout_constraintTop_toBottomOf="@id/etFrom" />
 
-    <EditText
+    <TextView
         android:id="@+id/etWhere"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:hint="@string/where_hint"
-        android:inputType="text"
-        android:maxLines="1"
+        android:text="@string/where_hint"
         app:layout_constraintBottom_toBottomOf="@id/cvInner"
         app:layout_constraintLeft_toLeftOf="@id/etFrom"
         app:layout_constraintRight_toRightOf="@id/etFrom" />
