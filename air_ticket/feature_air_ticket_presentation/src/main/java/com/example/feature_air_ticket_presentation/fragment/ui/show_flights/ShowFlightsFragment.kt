@@ -3,18 +3,29 @@ package com.example.feature_air_ticket_presentation.fragment.ui.show_flights
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
 import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
 import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetDirectFlightListUseCaseImpl
+import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_FORMAT
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TAG
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TITLE
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_COUNTRY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_LANGUAGE
 import com.example.feature_air_ticket_presentation.fragment.utils.ShowFlightsViewModelFactory
+import com.google.android.material.chip.Chip
+import com.google.android.material.datepicker.MaterialDatePicker
 import ui.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -50,8 +61,32 @@ class ShowFlightsFragment : BaseFragment() {
         setDateInChip()
         setDirectFlightRecycler()
         setDestinationDepartureText()
+        setClickListeners()
 
         return root
+    }
+
+    private fun setClickListeners() {
+        binding?.apply {
+            ivChange.setOnClickListener {
+                val departureText = tvFrom.text
+                val destinationText = tvWhere.text
+                tvFrom.text = destinationText
+                tvWhere.text = departureText
+            }
+            chipBack.setOnClickListener { view ->
+                chooseFlightDate(view)
+            }
+            chipDate.setOnClickListener { view ->
+                chooseFlightDate(view)
+            }
+            btnAllTickets.setOnClickListener {
+                findNavController().apply {
+                    navigate(R.id.action_airShowFlights_to_allTicketsFragment)
+                }
+            }
+        }
+
     }
 
     override fun onDestroyView() {
@@ -60,9 +95,8 @@ class ShowFlightsFragment : BaseFragment() {
     }
 
     private fun setDateInChip() {
-        val date = Date()
-        val dateFormat = SimpleDateFormat("dd MMM, E", Locale("ru", "RU"))
-        val dateText = dateFormat.format(date).replace(".", "")
+        val date = Date().time
+        val dateText = getFormattedDate(date)
         val editableText = Editable.Factory.getInstance().newEditable(dateText)
         binding?.chipDate?.text = editableText
     }
@@ -94,4 +128,24 @@ class ShowFlightsFragment : BaseFragment() {
             }
         }
     }
+
+    private fun chooseFlightDate(view: View) {
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText(DATE_PICKER_TITLE)
+                .build()
+        datePicker.show(
+            childFragmentManager,
+            DATE_PICKER_TAG
+        )
+        datePicker.addOnPositiveButtonClickListener { date ->
+            (view as Chip).text = getFormattedDate(date)
+        }
+    }
+
+    private fun getFormattedDate(date: Long): String =
+        SimpleDateFormat(DATE_FORMAT, Locale(RU_LANGUAGE, RU_COUNTRY))
+            .format(Date(date))
+            .replace(".", EMPTY_STRING)
+
 }

@@ -30,6 +30,15 @@
     <fragment
         android:id="@+id/show_flights"
         android:name="com.example.feature_air_ticket_presentation.fragment.ui.show_flights.ShowFlightsFragment"
-        android:label="Show flights" />
+        android:label="Show flights">
+        <action
+            android:id="@+id/action_airShowFlights_to_allTicketsFragment"
+            app:destination="@id/all_tickets" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/all_tickets"
+        android:name="com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.AllTicketsFragment"
+        android:label="All tickets" />
 
 </navigation>

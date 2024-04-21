@@ -14,6 +14,12 @@ object Constants {
 
     const val ITEM_COUNT = 3
 
+    const val DATE_FORMAT = "dd MMM, E"
+    const val RU_LANGUAGE = "ru"
+    const val RU_COUNTRY = "RU"
+    const val DATE_PICKER_TAG = "Date picker"
+    const val DATE_PICKER_TITLE = "Select date"
+
     const val EMPTY_STRING = ""
     const val SPACE = " "
 }
