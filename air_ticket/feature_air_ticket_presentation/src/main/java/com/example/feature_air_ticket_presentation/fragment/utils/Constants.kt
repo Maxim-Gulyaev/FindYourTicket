@@ -7,6 +7,8 @@ object Constants {
 
     const val DEPARTURE_TEXT_RESULT = "departure_text_result"
     const val DEPARTURE_TEXT_KEY = "departure_text_key"
+    const val DEPARTURE_DESTINATION_TEXT_RESULT = "departure_destination_text_result"
+    const val DEPARTURE_DESTINATION_TEXT_KEY = "departure_destination_text_key"
 
     const val BOTTOM_SHEET = "bottom sheet"
 

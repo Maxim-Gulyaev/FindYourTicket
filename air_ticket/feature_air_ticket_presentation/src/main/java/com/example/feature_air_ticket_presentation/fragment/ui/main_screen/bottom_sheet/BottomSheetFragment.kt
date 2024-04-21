@@ -5,14 +5,17 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentBottomSheetBinding
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_RESULT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_KEY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_RESULT
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment: BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentBottomSheetBinding? = null
     private val binding get() = _binding
@@ -38,6 +41,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
     private fun setClickListeners() {
         binding?.apply {
             etWhere.setOnEditorActionListener { v, actionId, event ->
+                setFragmentResult()
                 navigateToFragment(
                     R.id.action_airTicketsMainFragment_to_showFlightsFragment
                 )
@@ -94,6 +98,24 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
             viewLifecycleOwner
         ) { _, bundle ->
             binding?.tvFrom?.text = bundle.getCharSequence(DEPARTURE_TEXT_KEY)
+        }
+    }
+
+    private fun setFragmentResult() {
+        binding?.apply {
+            val destinationDepartureText = Pair(
+                tvFrom.text.toString(),
+                etWhere.text.toString()
+            )
+            requireActivity().supportFragmentManager.setFragmentResult(
+                DEPARTURE_DESTINATION_TEXT_RESULT,
+                bundleOf(
+                    Pair(
+                        DEPARTURE_DESTINATION_TEXT_KEY,
+                        destinationDepartureText
+                    )
+                )
+            )
         }
     }
 

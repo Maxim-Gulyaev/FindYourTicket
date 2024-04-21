@@ -12,6 +12,8 @@ import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
 import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetDirectFlightListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_KEY
 import com.example.feature_air_ticket_presentation.fragment.utils.ShowFlightsViewModelFactory
 import ui.BaseFragment
 import java.text.SimpleDateFormat
@@ -20,7 +22,7 @@ import java.util.Locale
 
 class ShowFlightsFragment : BaseFragment() {
 
-    //TODO rid this horrible code using Dagger
+    //TODO: rid this horrible code using Dagger
     private val viewModel by lazy {
         ViewModelProviders.of(
             this, ShowFlightsViewModelFactory(
@@ -47,6 +49,7 @@ class ShowFlightsFragment : BaseFragment() {
 
         setDateInChip()
         setDirectFlightRecycler()
+        setDestinationDepartureText()
 
         return root
     }
@@ -74,6 +77,20 @@ class ShowFlightsFragment : BaseFragment() {
                     false
                 )
                 adapter = DirectFlightAdapter(list)
+            }
+        }
+    }
+
+    private fun setDestinationDepartureText() {
+        requireActivity().supportFragmentManager.setFragmentResultListener(
+            Constants.DEPARTURE_DESTINATION_TEXT_RESULT,
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val destinationDepartureText =
+                bundle.getSerializable(DEPARTURE_DESTINATION_TEXT_KEY) as? Pair<*, *>
+            binding?.apply {
+                tvFrom.text = destinationDepartureText?.first.toString()
+                tvWhere.text = destinationDepartureText?.second.toString()
             }
         }
     }
