@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
 import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
 import com.example.feature_air_ticket_domain.use_case.get_ticket_list.GetTicketListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentAllTicketsBinding
+import com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.adapter.AllTicketsAdapter
 import com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory.AllTicketsViewModelFactory
 import ui.BaseFragment
 
@@ -51,7 +53,14 @@ class AllTicketsFragment: BaseFragment() {
     private fun setTicketRecyclerView() {
         viewModel.getTicketList()
         viewModel.ticketList.observe(viewLifecycleOwner) { list ->
-            Log.i("maxlog", list.toString())
+            binding?.rvTicket?.apply {
+                layoutManager = LinearLayoutManager(
+                    requireActivity(),
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+                adapter = AllTicketsAdapter(list)
+            }
         }
     }
 

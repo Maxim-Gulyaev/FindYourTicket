@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvTicket"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="16dp"
+        android:background="@color/cardview_dark_background"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:textStyle="bold"
+        android:elevation="2dp"
+        app:layout_constraintLeft_toLeftOf="@id/cvTicket"
+        app:layout_constraintTop_toTopOf="@id/cvTicket"
+        tools:text="99999 Р" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRoundIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:cardCornerRadius="12dp"
+        android:layout_marginStart="16dp"
+        app:cardBackgroundColor="#FF5E5E"
+        android:elevation="2dp"
+        app:layout_constraintLeft_toLeftOf="@id/cvTicket"
+        app:layout_constraintTop_toTopOf="@id/tvPrice"
+        app:layout_constraintBottom_toBottomOf="@id/cvTicket"/>
+
+    <TextView
+        android:id="@+id/tvDepartureTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintLeft_toRightOf="@id/cvRoundIcon"
+        app:layout_constraintTop_toTopOf="@id/cvRoundIcon"
+        app:layout_constraintBottom_toTopOf="@id/tvDepartureAirport"
+        tools:text="00:00 -"/>
+
+    <TextView
+        android:id="@+id/tvArrivalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintLeft_toRightOf="@id/tvDepartureTime"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvDepartureTime"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/tvTravelTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toRightOf="@id/tvArrivalTime"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvDepartureTime"
+        tools:text="4 часа в пути"/>
+
+    <TextView
+        android:id="@+id/tvTransfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        app:layout_constraintLeft_toRightOf="@id/tvTravelTime"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvDepartureTime"
+        tools:text="/ Без пересадок"/>
+
+    <TextView
+        android:id="@+id/tvDepartureAirport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintLeft_toLeftOf="@id/tvDepartureTime"
+        app:layout_constraintTop_toBottomOf="@id/tvDepartureTime"
+        app:layout_constraintBottom_toBottomOf="@id/cvRoundIcon"
+        tools:text="DME"/>
+
+    <TextView
+        android:id="@+id/tvArrivalAirport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintLeft_toRightOf="@id/tvDepartureAirport"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvDepartureAirport"
+        tools:text="DME"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2261BC"
+        android:visibility="invisible"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tvBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="4dp"
+            android:textStyle="italic"
+            tools:text="Самый удобный" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
