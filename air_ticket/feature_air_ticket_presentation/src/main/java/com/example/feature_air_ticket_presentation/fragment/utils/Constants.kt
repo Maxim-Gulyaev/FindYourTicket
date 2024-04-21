@@ -10,5 +10,8 @@ object Constants {
 
     const val BOTTOM_SHEET = "bottom sheet"
 
+    const val ITEM_COUNT = 3
+
     const val EMPTY_STRING = ""
+    const val SPACE = " "
 }

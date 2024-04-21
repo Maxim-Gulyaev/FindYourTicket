@@ -104,7 +104,7 @@ class AirTicketsMainFragment : BaseFragment() {
     private fun setMusicOfferRecycler(offerList: List<MusicOffer>) {
         binding?.rvMusicOffer?.apply {
             layoutManager = LinearLayoutManager(
-                activity,
+                requireActivity(),
                 LinearLayoutManager.HORIZONTAL,
                 false
             )

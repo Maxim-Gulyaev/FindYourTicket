@@ -2,15 +2,16 @@ package com.example.feature_air_ticket_presentation.fragment.ui.show_flights
 
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
 import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
 import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetDirectFlightListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
+import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
 import com.example.feature_air_ticket_presentation.fragment.utils.ShowFlightsViewModelFactory
 import ui.BaseFragment
 import java.text.SimpleDateFormat
@@ -45,7 +46,7 @@ class ShowFlightsFragment : BaseFragment() {
         val root = binding?.root
 
         setDateInChip()
-        getDirectFlightList()
+        setDirectFlightRecycler()
 
         return root
     }
@@ -63,10 +64,17 @@ class ShowFlightsFragment : BaseFragment() {
         binding?.chipDate?.text = editableText
     }
 
-    private fun getDirectFlightList() {
+    private fun setDirectFlightRecycler() {
         viewModel.getDirectFlightList()
         viewModel.directFlightList.observe(viewLifecycleOwner) { list ->
-            Log.i("maxlog", list.toString())
+            binding?.rvDirectFlights?.apply {
+                layoutManager = LinearLayoutManager(
+                    requireActivity(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+                adapter = DirectFlightAdapter(list)
+            }
         }
     }
 }
