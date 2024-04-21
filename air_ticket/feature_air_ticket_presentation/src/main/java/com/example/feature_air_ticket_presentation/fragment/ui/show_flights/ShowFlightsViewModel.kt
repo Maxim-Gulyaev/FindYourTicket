@@ -8,8 +8,9 @@ import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.mode
 import com.example.feature_air_ticket_presentation.fragment.utils.toDirectFlight
 import kotlinx.coroutines.launch
 import ui.BaseViewModel
+import javax.inject.Inject
 
-class ShowFlightsViewModel(
+class ShowFlightsViewModel @Inject constructor(
     private val getDirectFlightListUseCase: GetDirectFlightListUseCase
 ): BaseViewModel() {
 

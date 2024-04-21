@@ -41,7 +41,6 @@ android {
 
 dependencies {
 
-    implementation(project(":air_ticket:feature_air_ticket_presentation"))
     implementation(project(":core:utils"))
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -54,6 +53,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
     implementation ("com.google.dagger:dagger:2.51.1")
+    implementation(project(":air_ticket:feature_air_ticket_di"))
     kapt ("com.google.dagger:dagger-compiler:2.51.1")
 
     testImplementation("junit:junit:4.13.2")

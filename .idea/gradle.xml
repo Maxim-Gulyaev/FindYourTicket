@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/air_ticket" />
             <option value="$PROJECT_DIR$/air_ticket/feature_air_ticket_data" />
+            <option value="$PROJECT_DIR$/air_ticket/feature_air_ticket_di" />
             <option value="$PROJECT_DIR$/air_ticket/feature_air_ticket_domain" />
             <option value="$PROJECT_DIR$/air_ticket/feature_air_ticket_presentation" />
             <option value="$PROJECT_DIR$/app" />

@@ -8,8 +8,9 @@ import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.model
 import com.example.feature_air_ticket_presentation.fragment.utils.toMusicOffer
 import kotlinx.coroutines.launch
 import ui.BaseViewModel
+import javax.inject.Inject
 
-class AirTicketsMainViewModel(
+class AirTicketsMainViewModel @Inject constructor(
     private val getMusicOfferListUseCase: GetMusicOfferListUseCase
 ): BaseViewModel() {
 

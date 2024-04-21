@@ -7,11 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
-import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
-import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetMusicOfferListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentAirTicketMainBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.adapter.MusicOfferAdapter
 import com.example.feature_air_ticket_presentation.fragment.ui.main_screen.bottom_sheet.BottomSheetFragment
@@ -20,28 +16,22 @@ import com.example.feature_air_ticket_presentation.fragment.utils.Constants.BOTT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_KEY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_RESULT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
-import com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory.MainFragmentViewModelFactory
 import com.example.feature_air_ticket_presentation.fragment.utils.SharedPreferences
 import ui.BaseFragment
+import javax.inject.Inject
 
 class AirTicketsMainFragment : BaseFragment() {
 
-    //TODO rid this horrible code using Dagger
-    private val viewModel by lazy {
-        ViewModelProviders.of(
-            this, MainFragmentViewModelFactory(
-                GetMusicOfferListUseCaseImpl(
-                    MainScreenRepositoryImpl(
-                        MainScreenDataSourceImpl()
-                    )
-                )
-            )
-        ).get(AirTicketsMainViewModel::class.java)
-    }
-
+    @Inject
+    lateinit var viewModel: AirTicketsMainViewModel
     private var _binding: FragmentAirTicketMainBinding? = null
     private val binding get() = _binding
     private var sharedPreferences: SharedPreferences? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity?.application as App).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

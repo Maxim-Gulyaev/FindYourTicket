@@ -1,7 +1,15 @@
 package com.example.findyourticket.di
 
 import dagger.Component
+import javax.inject.Singleton
 
-@Component
+@Singleton
+@Component(
+    modules = [
+        AppModule::class,
+    ]
+)
+
 interface AppComponent {
+
 }

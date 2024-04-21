@@ -9,7 +9,7 @@ import com.example.feature_air_ticket_presentation.fragment.utils.toTicket
 import kotlinx.coroutines.launch
 import ui.BaseViewModel
 
-class AllTicketsViewModel(
+class AllTicketsViewModel (
     private val getTicketListUseCase: GetTicketListUseCase
 ): BaseViewModel() {
 
