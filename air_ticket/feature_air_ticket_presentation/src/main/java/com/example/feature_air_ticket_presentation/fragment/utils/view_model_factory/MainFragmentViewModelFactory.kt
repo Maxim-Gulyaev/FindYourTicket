@@ -1,4 +1,4 @@
-package com.example.feature_air_ticket_presentation.fragment.utils
+package com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

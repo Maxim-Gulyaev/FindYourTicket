@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
 import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
-import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetDirectFlightListUseCaseImpl
+import com.example.feature_air_ticket_domain.use_case.get_direct_flight_list.GetDirectFlightListUseCaseImpl
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
@@ -23,7 +23,7 @@ import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPA
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_COUNTRY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_LANGUAGE
-import com.example.feature_air_ticket_presentation.fragment.utils.ShowFlightsViewModelFactory
+import com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory.ShowFlightsViewModelFactory
 import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.MaterialDatePicker
 import ui.BaseFragment

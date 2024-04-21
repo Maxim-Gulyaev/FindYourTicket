@@ -20,7 +20,7 @@ import com.example.feature_air_ticket_presentation.fragment.utils.Constants.BOTT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_KEY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_TEXT_RESULT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
-import com.example.feature_air_ticket_presentation.fragment.utils.MainFragmentViewModelFactory
+import com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory.MainFragmentViewModelFactory
 import com.example.feature_air_ticket_presentation.fragment.utils.SharedPreferences
 import ui.BaseFragment
 

@@ -1,8 +1,8 @@
-package com.example.feature_air_ticket_presentation.fragment.utils
+package com.example.feature_air_ticket_presentation.fragment.utils.view_model_factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.feature_air_ticket_domain.use_case.get_music_offer_list.GetDirectFlightListUseCase
+import com.example.feature_air_ticket_domain.use_case.get_direct_flight_list.GetDirectFlightListUseCase
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.ShowFlightsViewModel
 
 class ShowFlightsViewModelFactory(
