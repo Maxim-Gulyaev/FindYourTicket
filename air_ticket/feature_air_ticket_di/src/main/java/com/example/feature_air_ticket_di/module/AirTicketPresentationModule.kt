@@ -26,17 +26,17 @@ class AirTicketPresentationModule {
     }
 
     @Provides
-    fun provideViewModel(fragment: AllTicketsFragment): AllTicketsViewModel {
+    fun provideAllTicketsViewModel(fragment: AllTicketsFragment): AllTicketsViewModel {
         return ViewModelProvider(fragment).get(AllTicketsViewModel::class.java)
     }
 
     @Provides
-    fun provideViewModel(fragment: AirTicketsMainFragment): AirTicketsMainViewModel {
+    fun provideAirTicketsMainViewModel(fragment: AirTicketsMainFragment): AirTicketsMainViewModel {
         return ViewModelProvider(fragment).get(AirTicketsMainViewModel::class.java)
     }
 
     @Provides
-    fun provideViewModel(fragment: ShowFlightsFragment): ShowFlightsViewModel {
+    fun provideShowFlightsViewModel(fragment: ShowFlightsFragment): ShowFlightsViewModel {
         return ViewModelProvider(fragment).get(ShowFlightsViewModel::class.java)
     }
 

@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
+import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
+import com.example.feature_air_ticket_domain.use_case.get_direct_flight_list.GetDirectFlightListUseCaseImpl
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
@@ -19,25 +23,31 @@ import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPA
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_COUNTRY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_LANGUAGE
+import com.example.feature_air_ticket_presentation.fragment.utils.factories.ShowFlightsViewModelFactory
 import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.MaterialDatePicker
 import ui.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import javax.inject.Inject
 
 class ShowFlightsFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModel: ShowFlightsViewModel
+    //TODO: rid this horrible code using Dagger
+    private val viewModel by lazy {
+        ViewModelProviders.of(
+            this, ShowFlightsViewModelFactory(
+                GetDirectFlightListUseCaseImpl(
+                    MainScreenRepositoryImpl(
+                        MainScreenDataSourceImpl()
+                    )
+                )
+            )
+        ).get(ShowFlightsViewModel::class.java)
+    }
+
     private var _binding: FragmentShowFlightsBinding? = null
     private val binding get() = _binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity?.application as App).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,11 +1,15 @@
 package com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.feature_air_ticket_presentation.databinding.RecyclerTicketItemBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.model.Ticket
+import com.example.feature_air_ticket_presentation.fragment.utils.calculateTravelTime
+import com.example.feature_air_ticket_presentation.fragment.utils.formatTime
 
 class AllTicketsAdapter(
     private val ticketList: List<Ticket>
@@ -30,15 +34,30 @@ class AllTicketsAdapter(
 
         holder.apply {
             price.text = item.price.value.toString()
+            departureTime.text = item.departure.date.formatTime()
+            arrivalTime.text = item.arrival.date.formatTime()
+            departureAirport.text = item.departure.airport
+            arrivalAirport.text = item.arrival.airport
+            travelTime.text =
+                calculateTravelTime(
+                    item.departure.date,
+                    item.arrival.date
+                )
+            if (item.hasTransfer) {
+                transfer.visibility = View.INVISIBLE
+            }
+            if (!item.badge.isNullOrEmpty()) {
+                badge.isVisible = true
+                badgeText.text = item.badge
+            }
         }
-
-        // остальное не успел ((
     }
 
     class AllTicketsViewHolder(
         binding: RecyclerTicketItemBinding
     ) : ViewHolder(binding.root) {
-        val badge = binding.tvBadge
+        val badge = binding.cvBadge
+        val badgeText = binding.tvBadge
         val price = binding.tvPrice
         val departureTime = binding.tvDepartureTime
         val arrivalTime = binding.tvArrivalTime

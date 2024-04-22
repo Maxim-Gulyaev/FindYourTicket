@@ -4,23 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
+import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
+import com.example.feature_air_ticket_domain.use_case.get_ticket_list.GetTicketListUseCaseImpl
 import com.example.feature_air_ticket_presentation.databinding.FragmentAllTicketsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.adapter.AllTicketsAdapter
+import com.example.feature_air_ticket_presentation.fragment.utils.factories.AllTicketsViewModelFactory
 import ui.BaseFragment
-import javax.inject.Inject
 
 class AllTicketsFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModel: AllTicketsViewModel
+    //TODO rid this horrible code using Dagger
+    private val viewModel by lazy {
+        ViewModelProviders.of(
+            this, AllTicketsViewModelFactory(
+                GetTicketListUseCaseImpl(
+                    MainScreenRepositoryImpl(
+                        MainScreenDataSourceImpl()
+                    )
+                )
+            )
+        ).get(AllTicketsViewModel::class.java)
+    }
+
     private var _binding: FragmentAllTicketsBinding? = null
     private val binding get() = _binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity?.application as App).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +55,7 @@ class AllTicketsFragment : BaseFragment() {
             binding?.rvTicket?.apply {
                 layoutManager = LinearLayoutManager(
                     requireActivity(),
-                    LinearLayoutManager.HORIZONTAL,
+                    LinearLayoutManager.VERTICAL,
                     false
                 )
                 adapter = AllTicketsAdapter(list)
