@@ -82,7 +82,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun navigateToFragment(destination: Int) {
         findNavController().apply {
-            setGraph(R.navigation.nav_graph_air_ticket)
             navigate(destination)
         }
     }
