@@ -11,6 +11,9 @@ class AllTicketsAdapter(
     private val ticketList: List<Ticket>
 ) : RecyclerView.Adapter<AllTicketsAdapter.AllTicketsViewHolder>() {
 
+    // TODO: вынести настройку интерфейса в метод onBind()
+    // TODO:переписать на единый адаптер для всех фрагментов модуля
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllTicketsViewHolder {
         val itemBinding = RecyclerTicketItemBinding.inflate(
             LayoutInflater.from(parent.context),

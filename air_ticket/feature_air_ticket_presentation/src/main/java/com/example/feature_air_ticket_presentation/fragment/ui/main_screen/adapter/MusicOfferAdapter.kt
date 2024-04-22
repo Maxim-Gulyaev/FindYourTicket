@@ -12,6 +12,9 @@ class MusicOfferAdapter(
     private val offerList: List<MusicOffer>
 ) : RecyclerView.Adapter<MusicOfferAdapter.MusicOfferViewHolder>() {
 
+    // TODO: вынести настройку интерфейса в метод onBind()
+    // TODO:переписать на единый адаптер для всех фрагментов модуля
+
     override fun onBindViewHolder(holder: MusicOfferViewHolder, position: Int) {
         val item = offerList[position]
 

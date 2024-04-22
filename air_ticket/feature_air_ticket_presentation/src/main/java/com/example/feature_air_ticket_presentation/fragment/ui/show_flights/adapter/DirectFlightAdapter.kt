@@ -14,6 +14,9 @@ class DirectFlightAdapter(
     private val flightList: List<DirectFlight>
 ): RecyclerView.Adapter<DirectFlightAdapter.DirectFlightViewHolder>() {
 
+    // TODO: вынести настройку интерфейса в метод onBind()
+    // TODO:переписать на единый адаптер для всех фрагментов модуля
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DirectFlightViewHolder {
         val itemBinding = RecyclerDirectFlightItemBinding.inflate(
             LayoutInflater.from(parent.context),
