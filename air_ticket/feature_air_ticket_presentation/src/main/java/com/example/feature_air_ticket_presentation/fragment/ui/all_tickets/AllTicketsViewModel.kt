@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.feature_air_ticket_domain.use_case.get_ticket_list.GetTicketListUseCase
 import com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.model.Ticket
+import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.model.TravelData
 import com.example.feature_air_ticket_presentation.fragment.utils.toTicket
 import kotlinx.coroutines.launch
 import ui.BaseViewModel
@@ -12,6 +13,9 @@ import ui.BaseViewModel
 class AllTicketsViewModel (
     private val getTicketListUseCase: GetTicketListUseCase
 ): BaseViewModel() {
+
+    private val _travelData = MutableLiveData<TravelData>()
+    val travelData: LiveData<TravelData> = _travelData
 
     private val _ticketList = MutableLiveData<List<Ticket>>()
     val ticketList: LiveData<List<Ticket>> = _ticketList
@@ -23,6 +27,14 @@ class AllTicketsViewModel (
                 tickets.add(value.toTicket())
             }
             _ticketList.value = tickets
+        }
+    }
+
+    fun setTravelData(
+        travelData: TravelData
+    ) {
+        viewModelScope.launch {
+            _travelData.value = travelData
         }
     }
 }

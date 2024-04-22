@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,21 +16,20 @@ import com.example.feature_air_ticket_domain.use_case.get_direct_flight_list.Get
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentShowFlightsBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.adapter.DirectFlightAdapter
+import com.example.feature_air_ticket_presentation.fragment.ui.show_flights.model.TravelData
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants
-import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_FORMAT
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_FORMAT_SHORTENED_MONTH
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TAG
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TITLE
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_KEY
-import com.example.feature_air_ticket_presentation.fragment.utils.Constants.EMPTY_STRING
-import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_COUNTRY
-import com.example.feature_air_ticket_presentation.fragment.utils.Constants.RU_LANGUAGE
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.TRAVEL_DATA_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.TRAVEL_DATA_RESULT
 import com.example.feature_air_ticket_presentation.fragment.utils.factories.ShowFlightsViewModelFactory
+import com.example.feature_air_ticket_presentation.fragment.utils.getFormattedDate
 import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.MaterialDatePicker
 import ui.BaseFragment
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 class ShowFlightsFragment : BaseFragment() {
 
@@ -48,6 +48,7 @@ class ShowFlightsFragment : BaseFragment() {
 
     private var _binding: FragmentShowFlightsBinding? = null
     private val binding get() = _binding
+    private var departureDate: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +59,7 @@ class ShowFlightsFragment : BaseFragment() {
         _binding = FragmentShowFlightsBinding.inflate(inflater, container, false)
         val root = binding?.root
 
-        setDateInChip()
+        setDate()
         setDirectFlightRecycler()
         setDestinationDepartureText()
         setClickListeners()
@@ -81,6 +82,7 @@ class ShowFlightsFragment : BaseFragment() {
                 chooseFlightDate(view)
             }
             btnAllTickets.setOnClickListener {
+                setTravelData()
                 findNavController().apply {
                     navigate(R.id.action_airShowFlights_to_allTicketsFragment)
                 }
@@ -94,9 +96,10 @@ class ShowFlightsFragment : BaseFragment() {
         _binding = null
     }
 
-    private fun setDateInChip() {
+    private fun setDate() {
         val date = Date().time
-        val dateText = getFormattedDate(date)
+        val dateText = getFormattedDate(date, DATE_FORMAT_SHORTENED_MONTH)
+        departureDate = date
         val editableText = Editable.Factory.getInstance().newEditable(dateText)
         binding?.chipDate?.text = editableText
     }
@@ -139,13 +142,22 @@ class ShowFlightsFragment : BaseFragment() {
             DATE_PICKER_TAG
         )
         datePicker.addOnPositiveButtonClickListener { date ->
-            (view as Chip).text = getFormattedDate(date)
+            departureDate = date
+            (view as Chip).text = getFormattedDate(date, DATE_FORMAT_SHORTENED_MONTH)
         }
     }
 
-    private fun getFormattedDate(date: Long): String =
-        SimpleDateFormat(DATE_FORMAT, Locale(RU_LANGUAGE, RU_COUNTRY))
-            .format(Date(date))
-            .replace(".", EMPTY_STRING)
-
+    private fun setTravelData() {
+        binding?.apply {
+            val travelData = TravelData(
+                departure = tvFrom.text.toString(),
+                destination = tvWhere.text.toString(),
+                departureDate = departureDate ?: 0
+            )
+            requireActivity().supportFragmentManager.setFragmentResult(
+                TRAVEL_DATA_RESULT,
+                bundleOf(TRAVEL_DATA_KEY to travelData)
+            )
+        }
+    }
 }

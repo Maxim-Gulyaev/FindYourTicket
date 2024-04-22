@@ -30,3 +30,14 @@ fun calculateTravelTime(
     val hours = travelTime.toHours().toDouble()
     return (((hours * 2).roundToInt() / 2.0).toString()) + " часа в пути"
 }
+
+fun getFormattedDate(
+    date: Long,
+    format: String
+): String =
+    SimpleDateFormat(
+        format,
+        Locale(Constants.RU_LANGUAGE, Constants.RU_COUNTRY)
+    )
+        .format(Date(date))
+        .replace(".", Constants.EMPTY_STRING)
