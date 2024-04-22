@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":core:base"))
     implementation(project(":air_ticket:feature_air_ticket_domain"))
     implementation(project(":air_ticket:feature_air_ticket_data"))
+    implementation(project(":core:ui"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
