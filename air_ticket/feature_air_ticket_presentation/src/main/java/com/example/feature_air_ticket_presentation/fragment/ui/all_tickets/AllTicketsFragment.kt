@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feature_air_ticket_data.data_source.MainScreenDataSourceImpl
 import com.example.feature_air_ticket_data.repository.MainScreenRepositoryImpl
@@ -48,8 +49,15 @@ class AllTicketsFragment : BaseFragment() {
         setTicketRecyclerView()
         getTravelData()
         setTravelDataInViews()
+        setClickListeners()
 
         return binding?.root
+    }
+
+    private fun setClickListeners() {
+        binding?.ivBack?.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setTravelDataInViews() {

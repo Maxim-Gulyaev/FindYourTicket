@@ -35,6 +35,11 @@
         android:label="Notifications"
         tools:layout="@layout/fragment_not_implemented" />
 
-    <include app:graph= "@navigation/nav_graph_air_ticket" />
+    <!--<include app:graph= "@navigation/nav_graph_air_ticket" />-->
+
+    <include
+        android:id="@+id/nav_graph_air_ticket"
+        app:defaultNavHost="true"
+        app:graph="@navigation/nav_graph_air_ticket" />
 
 </navigation>
