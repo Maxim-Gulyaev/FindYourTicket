@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.FragmentBottomSheetBinding
@@ -19,6 +20,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentBottomSheetBinding? = null
     private val binding get() = _binding
+    private val viewModel by viewModels<BottomSheetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +29,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     ): ConstraintLayout? {
         _binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
 
+        getFragmentResult()
         setClickListeners()
         setDepartureText()
 
@@ -41,11 +44,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private fun setClickListeners() {
         binding?.apply {
             etWhere.setOnEditorActionListener { v, actionId, event ->
-                setFragmentResult()
-                navigateToFragment(
-                    R.id.action_airTicketsMainFragment_to_showFlightsFragment
-                )
-                true
+                navigateToFlightsWithResult()
+                false
+            }
+            ivSearch.setOnClickListener {
+                navigateToFlightsWithResult()
             }
             ivClear.setOnClickListener {
                 etWhere.text.clear()
@@ -92,11 +95,22 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setDepartureText() {
+        binding?.apply {
+            viewModel.departureLiveData.observe(viewLifecycleOwner) { text ->
+                tvFrom.text = text
+            }
+        }
+    }
+
+    private fun getFragmentResult() {
         requireActivity().supportFragmentManager.setFragmentResultListener(
             DEPARTURE_TEXT_RESULT,
             viewLifecycleOwner
         ) { _, bundle ->
-            binding?.tvFrom?.text = bundle.getCharSequence(DEPARTURE_TEXT_KEY)
+            val departureText = bundle.getString(DEPARTURE_TEXT_KEY)
+            departureText?.let {
+                viewModel.setDepartureText(it)
+            }
         }
     }
 
@@ -116,6 +130,13 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 )
             )
         }
+    }
+
+    private fun navigateToFlightsWithResult() {
+        setFragmentResult()
+        navigateToFragment(
+            R.id.action_airTicketsMainFragment_to_showFlightsFragment
+        )
     }
 
 }

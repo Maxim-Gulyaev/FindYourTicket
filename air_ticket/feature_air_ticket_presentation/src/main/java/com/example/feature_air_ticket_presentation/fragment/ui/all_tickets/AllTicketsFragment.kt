@@ -1,7 +1,6 @@
 package com.example.feature_air_ticket_presentation.fragment.ui.all_tickets
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +60,7 @@ class AllTicketsFragment : BaseFragment() {
     }
 
     private fun setTravelDataInViews() {
-        viewModel.travelData.observe(viewLifecycleOwner) { travelData ->
+        viewModel.travelInfoLiveData.observe(viewLifecycleOwner) { travelData ->
             binding?.apply {
                 tvDeparture.text = travelData.departure
                 tvDestination.text = travelData.destination
@@ -94,7 +93,7 @@ class AllTicketsFragment : BaseFragment() {
 
     private fun setTicketRecyclerView() {
         viewModel.getTicketList()
-        viewModel.ticketList.observe(viewLifecycleOwner) { list ->
+        viewModel.ticketListLiveData.observe(viewLifecycleOwner) { list ->
             binding?.rvTicket?.apply {
                 layoutManager = LinearLayoutManager(
                     requireActivity(),

@@ -96,7 +96,7 @@ class AirTicketsMainFragment : BaseFragment() {
 
     private fun getMusicOfferList() {
         viewModel.getMusicOffersList()
-        viewModel.musicOfferList.observe(viewLifecycleOwner) { list ->
+        viewModel.musicOfferLiveData.observe(viewLifecycleOwner) { list ->
             setMusicOfferRecycler(list)
         }
     }
@@ -113,7 +113,7 @@ class AirTicketsMainFragment : BaseFragment() {
     }
 
     private fun setFragmentResult() {
-        val departureText = binding?.tvDeparture?.text
+        val departureText = binding?.tvDeparture?.text.toString()
         requireActivity().supportFragmentManager.setFragmentResult(
             DEPARTURE_TEXT_RESULT,
             bundleOf(Pair(DEPARTURE_TEXT_KEY, departureText))

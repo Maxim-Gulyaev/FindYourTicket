@@ -55,18 +55,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_plane_24"
+        android:src="@drawable/ic_plane_2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMusicianCity" />
 
     <TextView
         android:id="@+id/tvPrice"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="8dp"
+        android:drawableRight="@drawable/ic_ruble_2"
+        android:drawablePadding="2dp"
         app:layout_constraintLeft_toRightOf="@id/ivPlane"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMusicianCity"
         tools:text="Price" />
 

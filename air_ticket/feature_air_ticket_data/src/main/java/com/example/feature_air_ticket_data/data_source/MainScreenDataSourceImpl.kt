@@ -8,12 +8,13 @@ import com.example.feature_air_ticket_data.utils.DirectFlightJsonData
 import com.example.feature_air_ticket_data.utils.MusicOfferJsonData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import javax.inject.Inject
 
 private const val MUSIC_ARRAY_NAME = "offers"
 private const val DIRECT_FLIGHT_ARRAY_NAME = "tickets_offers"
 private const val ALL_TICKETS_ARRAY_NAME = "tickets"
 
-class MainScreenDataSourceImpl() : MainScreenDataSource {
+class MainScreenDataSourceImpl @Inject constructor() : MainScreenDataSource {
 
     override fun getMusicOfferList(): List<MusicOfferModel> =
         getListFromJson(

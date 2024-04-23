@@ -14,8 +14,11 @@ class ShowFlightsViewModel @Inject constructor(
     private val getDirectFlightListUseCase: GetDirectFlightListUseCase
 ): BaseViewModel() {
 
-    private val _directFlightList = MutableLiveData<List<DirectFlight>>()
-    val directFlightList: LiveData<List<DirectFlight>> = _directFlightList
+    private val _directFlightsLiveData = MutableLiveData<List<DirectFlight>>()
+    val directFlightsLiveData: LiveData<List<DirectFlight>> = _directFlightsLiveData
+
+    private val _townNamesLiveData = MutableLiveData<Pair<String,String>>()
+    val townNamesLiveData: LiveData<Pair<String,String>> = _townNamesLiveData
 
     fun getDirectFlightList() {
         val flights = mutableListOf<DirectFlight>()
@@ -23,7 +26,11 @@ class ShowFlightsViewModel @Inject constructor(
             getDirectFlightListUseCase.execute().collect() { value ->
                 flights.add(value.toDirectFlight())
             }
-            _directFlightList.value = flights
+            _directFlightsLiveData.value = flights
         }
+    }
+
+    fun setTownNames(townNames: Pair<String,String>) {
+        _townNamesLiveData.value = townNames
     }
 }

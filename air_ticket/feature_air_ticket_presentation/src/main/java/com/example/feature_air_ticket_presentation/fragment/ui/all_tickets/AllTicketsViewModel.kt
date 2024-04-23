@@ -14,11 +14,11 @@ class AllTicketsViewModel (
     private val getTicketListUseCase: GetTicketListUseCase
 ): BaseViewModel() {
 
-    private val _travelData = MutableLiveData<TravelData>()
-    val travelData: LiveData<TravelData> = _travelData
+    private val _travelInfoLiveData = MutableLiveData<TravelData>()
+    val travelInfoLiveData: LiveData<TravelData> = _travelInfoLiveData
 
-    private val _ticketList = MutableLiveData<List<Ticket>>()
-    val ticketList: LiveData<List<Ticket>> = _ticketList
+    private val _ticketListLiveData = MutableLiveData<List<Ticket>>()
+    val ticketListLiveData: LiveData<List<Ticket>> = _ticketListLiveData
 
     fun getTicketList() {
         val tickets = mutableListOf<Ticket>()
@@ -26,7 +26,7 @@ class AllTicketsViewModel (
             getTicketListUseCase.execute().collect() { value ->
                 tickets.add(value.toTicket())
             }
-            _ticketList.value = tickets
+            _ticketListLiveData.value = tickets
         }
     }
 
@@ -34,7 +34,7 @@ class AllTicketsViewModel (
         travelData: TravelData
     ) {
         viewModelScope.launch {
-            _travelData.value = travelData
+            _travelInfoLiveData.value = travelData
         }
     }
 }

@@ -54,6 +54,9 @@ dependencies {
 
     implementation ("com.google.dagger:dagger:2.51.1")
     implementation(project(":air_ticket:feature_air_ticket_di"))
+    implementation(project(":air_ticket:feature_air_ticket_data"))
+    implementation(project(":air_ticket:feature_air_ticket_presentation"))
+    implementation(project(":air_ticket:feature_air_ticket_domain"))
     kapt ("com.google.dagger:dagger-compiler:2.51.1")
 
     testImplementation("junit:junit:4.13.2")

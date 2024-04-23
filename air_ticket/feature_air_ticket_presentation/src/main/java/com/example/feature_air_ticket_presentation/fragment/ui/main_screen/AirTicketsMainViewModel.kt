@@ -14,8 +14,8 @@ class AirTicketsMainViewModel @Inject constructor(
     private val getMusicOfferListUseCase: GetMusicOfferListUseCase
 ): BaseViewModel() {
 
-    private val _musicOfferList = MutableLiveData<List<MusicOffer>>()
-    val musicOfferList: LiveData<List<MusicOffer>> = _musicOfferList
+    private val _musicOfferLiveData = MutableLiveData<List<MusicOffer>>()
+    val musicOfferLiveData: LiveData<List<MusicOffer>> = _musicOfferLiveData
 
     fun getMusicOffersList() {
         val offers = mutableListOf<MusicOffer>()
@@ -23,7 +23,7 @@ class AirTicketsMainViewModel @Inject constructor(
             getMusicOfferListUseCase.execute().collect() { value ->
                 offers.add(value.toMusicOffer())
             }
-            _musicOfferList.value = offers
+            _musicOfferLiveData.value = offers
         }
     }
 

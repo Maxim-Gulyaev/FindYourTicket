@@ -15,6 +15,7 @@ object Constants {
     const val BOTTOM_SHEET = "bottom sheet"
 
     const val ITEM_COUNT = 3
+    const val GREY_SYMBOL_COUNT = 4
 
     const val DATE_FORMAT_SHORTENED_MONTH = "dd MMM, E"
     const val DATE_FORMAT_DAY_MONTH = "dd MMMM"

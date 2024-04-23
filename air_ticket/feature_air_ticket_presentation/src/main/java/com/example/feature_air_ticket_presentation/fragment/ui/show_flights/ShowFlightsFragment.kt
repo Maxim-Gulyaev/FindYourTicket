@@ -1,7 +1,9 @@
 package com.example.feature_air_ticket_presentation.fragment.ui.show_flights
 
 import android.os.Bundle
-import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,7 @@ import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TAG
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DATE_PICKER_TITLE
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.DEPARTURE_DESTINATION_TEXT_KEY
+import com.example.feature_air_ticket_presentation.fragment.utils.Constants.GREY_SYMBOL_COUNT
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.TRAVEL_DATA_KEY
 import com.example.feature_air_ticket_presentation.fragment.utils.Constants.TRAVEL_DATA_RESULT
 import com.example.feature_air_ticket_presentation.fragment.utils.factories.ShowFlightsViewModelFactory
@@ -59,9 +62,10 @@ class ShowFlightsFragment : BaseFragment() {
         _binding = FragmentShowFlightsBinding.inflate(inflater, container, false)
         val root = binding?.root
 
+        getFragmentResult()
         setDate()
         setDirectFlightRecycler()
-        setDestinationDepartureText()
+        setTownText()
         setClickListeners()
 
         return root
@@ -74,6 +78,9 @@ class ShowFlightsFragment : BaseFragment() {
                 val destinationText = tvWhere.text
                 tvFrom.text = destinationText
                 tvWhere.text = departureText
+            }
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
             }
             chipBack.setOnClickListener { view ->
                 chooseFlightDate(view)
@@ -100,13 +107,18 @@ class ShowFlightsFragment : BaseFragment() {
         val date = Date().time
         val dateText = getFormattedDate(date, DATE_FORMAT_SHORTENED_MONTH)
         departureDate = date
-        val editableText = Editable.Factory.getInstance().newEditable(dateText)
-        binding?.chipDate?.text = editableText
+        val coloredText = SpannableString(dateText)
+        coloredText.setSpan(
+            ForegroundColorSpan(resources.getColor(com.example.ui.R.color.grey_6)),
+            dateText.length - GREY_SYMBOL_COUNT, dateText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding?.chipDate?.text = coloredText
     }
 
     private fun setDirectFlightRecycler() {
         viewModel.getDirectFlightList()
-        viewModel.directFlightList.observe(viewLifecycleOwner) { list ->
+        viewModel.directFlightsLiveData.observe(viewLifecycleOwner) { list ->
             binding?.rvDirectFlights?.apply {
                 layoutManager = LinearLayoutManager(
                     requireActivity(),
@@ -118,19 +130,29 @@ class ShowFlightsFragment : BaseFragment() {
         }
     }
 
-    private fun setDestinationDepartureText() {
+    private fun getFragmentResult() {
         requireActivity().supportFragmentManager.setFragmentResultListener(
             Constants.DEPARTURE_DESTINATION_TEXT_RESULT,
             viewLifecycleOwner
         ) { _, bundle ->
-            val destinationDepartureText =
-                bundle.getSerializable(DEPARTURE_DESTINATION_TEXT_KEY) as? Pair<*, *>
-            binding?.apply {
-                tvFrom.text = destinationDepartureText?.first.toString()
-                tvWhere.text = destinationDepartureText?.second.toString()
+            val townNames =
+                bundle.getSerializable(DEPARTURE_DESTINATION_TEXT_KEY) as? Pair<String, String>
+            townNames?.let {
+                viewModel.setTownNames(it)
             }
         }
     }
+
+    private fun setTownText() {
+        binding?.apply {
+            viewModel.townNamesLiveData.observe(viewLifecycleOwner) { townNames ->
+                tvFrom.text = townNames?.first.toString()
+                tvWhere.text = townNames?.second.toString()
+            }
+        }
+    }
+
+
 
     private fun chooseFlightDate(view: View) {
         val datePicker =
@@ -159,5 +181,9 @@ class ShowFlightsFragment : BaseFragment() {
                 bundleOf(TRAVEL_DATA_KEY to travelData)
             )
         }
+    }
+
+    private fun getViewModel() {
+
     }
 }

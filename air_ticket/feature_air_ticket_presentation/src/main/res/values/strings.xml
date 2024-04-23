@@ -22,4 +22,8 @@
     <string name="hyphen">—</string>
     <string name="no_transfer">/Без пересадок</string>
     <string name="one_passenger">, 1 пассажир</string>
+    <string name="available_values">
+        абвгдеёжзийклмнопрстуфхцчшщъыьэюя
+        АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ-
+    </string>
 </resources>
