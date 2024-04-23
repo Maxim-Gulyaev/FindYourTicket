@@ -6,17 +6,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.feature_air_ticket_presentation.R
 import com.example.feature_air_ticket_presentation.databinding.RecyclerTicketItemBinding
 import com.example.feature_air_ticket_presentation.fragment.ui.all_tickets.model.Ticket
 import com.example.feature_air_ticket_presentation.fragment.utils.calculateTravelTime
+import com.example.feature_air_ticket_presentation.fragment.utils.formatPrice
 import com.example.feature_air_ticket_presentation.fragment.utils.formatTime
 
 class AllTicketsAdapter(
     private val ticketList: List<Ticket>
 ) : RecyclerView.Adapter<AllTicketsAdapter.AllTicketsViewHolder>() {
-
-    // TODO: вынести настройку интерфейса в метод onBind()
-    // TODO:переписать на единый адаптер для всех фрагментов модуля
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllTicketsViewHolder {
         val itemBinding = RecyclerTicketItemBinding.inflate(
@@ -31,9 +30,13 @@ class AllTicketsAdapter(
 
     override fun onBindViewHolder(holder: AllTicketsViewHolder, position: Int) {
         val item = ticketList[position]
+        val context = holder.price.context
 
         holder.apply {
-            price.text = item.price.value.toString()
+            price.text = context.getString(
+                R.string.price,
+                item.price.value.formatPrice()
+            )
             departureTime.text = item.departure.date.formatTime()
             arrivalTime.text = item.arrival.date.formatTime()
             departureAirport.text = item.departure.airport

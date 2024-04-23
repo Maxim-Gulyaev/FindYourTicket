@@ -22,7 +22,10 @@ import ui.BaseFragment
 
 class AllTicketsFragment : BaseFragment() {
 
-    //TODO rid this horrible code using Dagger
+    private var _binding: FragmentAllTicketsBinding? = null
+    private val binding get() = _binding
+
+    //TODO: временное решение, переделать на Даггер
     private val viewModel by lazy {
         ViewModelProviders.of(
             this, AllTicketsViewModelFactory(
@@ -34,9 +37,6 @@ class AllTicketsFragment : BaseFragment() {
             )
         ).get(AllTicketsViewModel::class.java)
     }
-
-    private var _binding: FragmentAllTicketsBinding? = null
-    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,

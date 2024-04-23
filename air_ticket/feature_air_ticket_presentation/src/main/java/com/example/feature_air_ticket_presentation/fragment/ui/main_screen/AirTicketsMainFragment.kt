@@ -26,7 +26,11 @@ import ui.BaseFragment
 
 class AirTicketsMainFragment : BaseFragment() {
 
-    //TODO rid this horrible code using Dagger
+    private var _binding: FragmentAirTicketMainBinding? = null
+    private val binding get() = _binding
+    private var sharedPreferences: SharedPreferences? = null
+
+    //TODO: временное решение, переделать на Даггер
     private val viewModel by lazy {
         ViewModelProviders.of(
             this, MainFragmentViewModelFactory(
@@ -38,10 +42,6 @@ class AirTicketsMainFragment : BaseFragment() {
             )
         ).get(AirTicketsMainViewModel::class.java)
     }
-
-    private var _binding: FragmentAirTicketMainBinding? = null
-    private val binding get() = _binding
-    private var sharedPreferences: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

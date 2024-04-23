@@ -26,5 +26,5 @@ object Constants {
     const val DATE_PICKER_TITLE = "Select date"
 
     const val EMPTY_STRING = ""
-    const val SPACE = " "
+    const val DOUBLE_SPACE = "  "
 }

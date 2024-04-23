@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_margin="16dp"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/grey_2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:src="@drawable/ic_left_arrow"
+        android:src="@drawable/ic_left_arrow_blue"
         app:layout_constraintBottom_toBottomOf="@id/vData"
         app:layout_constraintLeft_toLeftOf="@id/vData"
         app:layout_constraintTop_toTopOf="@id/vData" />
@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/Title_3"
+        android:textColor="@android:color/white"
         app:layout_constraintLeft_toRightOf="@id/ivBack"
         app:layout_constraintTop_toTopOf="@id/vData"
         tools:text="Москва" />
@@ -39,27 +39,32 @@
         android:id="@+id/tvHyphen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="2dp"
         android:text="@string/hyphen"
+        android:textAppearance="@style/Title_3"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvDeparture"
         app:layout_constraintLeft_toRightOf="@id/tvDeparture"
-        app:layout_constraintTop_toTopOf="@id/tvDeparture"
-        app:layout_constraintBottom_toBottomOf="@id/tvDeparture"/>
+        app:layout_constraintTop_toTopOf="@id/tvDeparture" />
 
     <TextView
         android:id="@+id/tvDestination"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/tvHyphen"
+        android:textAppearance="@style/Title_3"
+        android:textColor="@android:color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvDeparture"
+        app:layout_constraintLeft_toRightOf="@id/tvHyphen"
         tools:text="Москва" />
 
     <TextView
         android:id="@+id/tvDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/Title_4"
+        android:textColor="@color/grey_6"
         app:layout_constraintLeft_toLeftOf="@id/tvDeparture"
         app:layout_constraintTop_toBottomOf="@id/tvDeparture"
         tools:text="Москва-Сочи" />
@@ -69,6 +74,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/one_passenger"
+        android:textAppearance="@style/Title_4"
+        android:textColor="@color/grey_6"
         app:layout_constraintLeft_toRightOf="@id/tvDate"
         app:layout_constraintTop_toBottomOf="@id/tvDeparture"
         tools:text="Москва-Сочи" />
@@ -78,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vData" />
@@ -88,7 +95,7 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginBottom="72dp"
-        android:backgroundTint="#2261BC"
+        android:backgroundTint="@color/blue"
         app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -109,9 +116,11 @@
         android:id="@+id/tvFilter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:elevation="2dp"
         android:text="@string/filter_text"
-        android:textStyle="italic"
+        android:textAppearance="@style/Title_4"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@id/cvOptions"
         app:layout_constraintLeft_toRightOf="@id/ivFilter"
         app:layout_constraintTop_toTopOf="@id/cvOptions"
@@ -132,9 +141,11 @@
         android:id="@+id/tvChart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:elevation="2dp"
         android:text="@string/chart"
-        android:textStyle="italic"
+        android:textAppearance="@style/Title_4"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@id/cvOptions"
         app:layout_constraintLeft_toRightOf="@id/ivChart"
         app:layout_constraintTop_toTopOf="@id/cvOptions"

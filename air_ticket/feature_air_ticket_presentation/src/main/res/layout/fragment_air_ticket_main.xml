@@ -23,7 +23,7 @@
         android:layout_height="122dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="36dp"
-        android:background="@color/grey_4"
+        android:backgroundTint="@color/grey_4"
         android:padding="12dp"
         app:cardCornerRadius="16dp"
         app:layout_constraintLeft_toLeftOf="parent"

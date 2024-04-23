@@ -19,11 +19,13 @@
     <string name="show_all_tickets">Посмотреть все билеты</string>
     <string name="filter_text">Фильтр</string>
     <string name="chart">График цен</string>
-    <string name="hyphen">—</string>
+    <string name="hyphen">-</string>
+    <string name="hyphen_long">–</string>
     <string name="no_transfer">/Без пересадок</string>
     <string name="one_passenger">, 1 пассажир</string>
     <string name="available_values">
         абвгдеёжзийклмнопрстуфхцчшщъыьэюя
         АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ-
     </string>
+    <string name="price">%1$s ₽</string>
 </resources>

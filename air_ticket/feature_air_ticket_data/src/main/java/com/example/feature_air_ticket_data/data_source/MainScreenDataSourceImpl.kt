@@ -54,5 +54,4 @@ class MainScreenDataSourceImpl @Inject constructor() : MainScreenDataSource {
         return resultList
     }
 
-
 }

@@ -36,7 +36,11 @@ import java.util.Date
 
 class ShowFlightsFragment : BaseFragment() {
 
-    //TODO: rid this horrible code using Dagger
+    private var _binding: FragmentShowFlightsBinding? = null
+    private val binding get() = _binding
+    private var departureDate: Long? = null
+
+    //TODO: временное решение, переделать на Даггер
     private val viewModel by lazy {
         ViewModelProviders.of(
             this, ShowFlightsViewModelFactory(
@@ -48,10 +52,6 @@ class ShowFlightsFragment : BaseFragment() {
             )
         ).get(ShowFlightsViewModel::class.java)
     }
-
-    private var _binding: FragmentShowFlightsBinding? = null
-    private val binding get() = _binding
-    private var departureDate: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
