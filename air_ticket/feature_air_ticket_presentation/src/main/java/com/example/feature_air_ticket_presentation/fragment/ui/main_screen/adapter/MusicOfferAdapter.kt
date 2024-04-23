@@ -1,5 +1,6 @@
 package com.example.feature_air_ticket_presentation.fragment.ui.main_screen.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +16,15 @@ class MusicOfferAdapter(
 
     override fun onBindViewHolder(holder: MusicOfferViewHolder, position: Int) {
         val item = offerList[position]
+        val context: Context = holder.price.context
 
         holder.apply {
             title.text = item.title
             town.text = item.town
-            price.text = item.price.value.formatPrice()
+            price.text = context.getString(
+                R.string.price,
+                item.price.value.formatPrice()
+            )
             when (item.musicOfferId) {
                 1 -> image.setImageResource(R.drawable.antwoord)
                 2 -> image.setImageResource(R.drawable.socrat)
